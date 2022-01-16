@@ -5,5 +5,5 @@ interface Props {
 }
 
 export default ({ children }: Props) => (
-  <div className="p-10  bg-black text-white">{children}</div>
+  <div className="p-10 h-screen bg-black text-white">{children}</div>
 );
