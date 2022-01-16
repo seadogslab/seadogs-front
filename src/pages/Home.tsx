@@ -60,49 +60,15 @@ export default () => {
           </p>
         )}
 
-        <Button
-          disabled={!allowQuest}
-          onClick={() => {
-            window.open(
-              'https://hungry-dijkstra-2742a9.netlify.app/map.html?',
-              '_blank',
-            );
-          }}
-          title="Start the quest"
-        />
         <div className="flex flex-row justify-center">
-          {!allowQuest ? (
-            <a
-              href="https://hungry-dijkstra-2742a9.netlify.app/map.html?"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <Button
-                disabled={!allowQuest}
-                onClick={() => {
-                  // if (allowQuest) {
-                  //   // ctx.contracts?.seadogs
-                  //   //   ?.mintToken(
-                  //   //     'bafkreiee4p53mprsms57pvi637eelw2rvkyuka6u5btl7hckvkvhgjptoq',
-                  //   //   )
-                  //   //   .then((res: any) => console.log('res', res))
-                  //   //   .catch((e: any) => console.log('e', e));
-                  //   // ctx.contracts?.seadogs
-                  //   //   .tokenURI(3)
-                  //   //   .then((res: any) => console.log('res', res))
-                  //   //   .catch((e: any) => console.log('e', e));
-                  //   // nav({});
-                  //   // nav('https://hungry-dijkstra-2742a9.netlify.app/map.html');
-                  // }
-                }}
-                title="Start the quest"
-              />
-            </a>
-          ) : (
-            <Button
-              disabled={!allowQuest}
-              onClick={() => {
-                // if (allowQuest) {
+          <Button
+            disabled={!allowQuest}
+            onClick={() => {
+              if (allowQuest) {
+                window.open(
+                  'https://hungry-dijkstra-2742a9.netlify.app/map.html?',
+                  '_blank',
+                );
                 //   // ctx.contracts?.seadogs
                 //   //   ?.mintToken(
                 //   //     'bafkreiee4p53mprsms57pvi637eelw2rvkyuka6u5btl7hckvkvhgjptoq',
@@ -115,11 +81,10 @@ export default () => {
                 //   //   .catch((e: any) => console.log('e', e));
                 //   // nav({});
                 //   // nav('https://hungry-dijkstra-2742a9.netlify.app/map.html');
-                // }
-              }}
-              title="Start the quest"
-            />
-          )}
+              }
+            }}
+            title="Start the quest"
+          />
         </div>
       </div>
     </div>
