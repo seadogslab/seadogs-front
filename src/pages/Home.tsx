@@ -38,6 +38,7 @@ export default () => {
   // const nav = useNavigate();
   const [allowQuest, setAllowQuest] = useState(false);
 
+  /* eslint-disable no-console */
   console.log(ctx);
   ctx.contracts?.seadogs
     ?.balanceOf(ctx.account)
