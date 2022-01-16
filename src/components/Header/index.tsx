@@ -5,7 +5,7 @@ import { useWeb3Context } from '../../EthProvider';
 
 export default () => {
   const ctx = useWeb3Context();
-  const { isWalletConnected, requestConnection, account } = ctx;
+  const { requestConnection, account } = ctx;
 
   const accountCroped = useMemo(() => {
     if (account) {
