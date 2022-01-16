@@ -14,7 +14,7 @@ export default () => {
     return account;
   }, [account]);
 
-  console.log(!isWalletConnected && !ctx.isMetamaskConnected);
+  // console.log(!isWalletConnected && !ctx.isMetamaskConnected);
   return (
     <div className="antialiased font-extrabold flex flex-col relative mb-6">
       <div className="h-14 text-5xl flex flex-row justify-center">
@@ -27,7 +27,7 @@ export default () => {
         <Button
           title={accountCroped ?? 'Connect Wallet'}
           onClick={() => {
-            console.log('requestConnection');
+            // console.log('requestConnection');
             requestConnection();
           }}
           disabled={!isWalletConnected && !ctx.isMetamaskConnected}

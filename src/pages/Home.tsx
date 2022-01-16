@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 // import { format, getHours, getMinutes, getSeconds } from 'date-fns';
 // import { BigNumber, ethers } from 'ethers';
-import { Link, useNavigate } from 'react-router-dom';
+// import { Link, useNavigate } from 'react-router-dom';
 import { BigNumber } from 'ethers';
 import { useWeb3Context } from '../EthProvider';
 import { Button } from '../components';
@@ -35,17 +35,19 @@ import { Button } from '../components';
 
 export default () => {
   const ctx = useWeb3Context();
-  const nav = useNavigate();
+  // const nav = useNavigate();
   const [allowQuest, setAllowQuest] = useState(false);
 
   ctx.contracts?.seadogs
     ?.balanceOf(ctx.account)
     .then((res: BigNumber) => {
       if (Number(res) > 0) {
-        console.log(Number(res));
+        // console.log(Number(res));
         setAllowQuest(true);
       }
     })
+    /* eslint-disable  @typescript-eslint/no-explicit-any */
+    /* eslint-disable no-console */
     .catch((e: any) => console.log(e));
   return (
     <div className="flex items-center justify-center h-96 ">

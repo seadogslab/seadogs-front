@@ -5,6 +5,7 @@ import SeaDogs from '../artifacts/contracts/Seadogs.json';
 
 declare global {
   interface Window {
+    /* eslint-disable @typescript-eslint/no-explicit-any */
     ethereum: any;
   }
 }
@@ -30,6 +31,7 @@ const values: Context = {
   isWalletConnected: false,
   isMetamaskConnected: false,
   isError: false,
+  /* eslint-disable no-console */
   requestConnection: () => console.error('ERROR'),
 };
 
@@ -95,6 +97,7 @@ export default ({ children }: { children: React.ReactNode }) => {
             },
           });
         })
+        /* eslint-disable @typescript-eslint/no-explicit-any */
         .catch((err: any) => {
           setValue({
             isError: true,
@@ -103,8 +106,6 @@ export default ({ children }: { children: React.ReactNode }) => {
         });
 
       ethereum.on('disconnect', () => {
-        // console.log('disconnect');
-
         setValue({
           isMetamaskConnected: false,
           isWalletConnected: false,
