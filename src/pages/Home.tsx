@@ -60,9 +60,23 @@ export default () => {
           </p>
         )}
 
+        <Button
+          disabled={!allowQuest}
+          onClick={() => {
+            window.open(
+              'https://hungry-dijkstra-2742a9.netlify.app/map.html?',
+              '_blank',
+            );
+          }}
+          title="Start the quest"
+        />
         <div className="flex flex-row justify-center">
           {!allowQuest ? (
-            <a href="https://hungry-dijkstra-2742a9.netlify.app/map.html?">
+            <a
+              href="https://hungry-dijkstra-2742a9.netlify.app/map.html?"
+              target="_blank"
+              rel="noreferrer"
+            >
               <Button
                 disabled={!allowQuest}
                 onClick={() => {
