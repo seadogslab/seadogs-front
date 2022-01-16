@@ -38,6 +38,7 @@ export default () => {
   // const nav = useNavigate();
   const [allowQuest, setAllowQuest] = useState(false);
 
+  console.log(ctx);
   ctx.contracts?.seadogs
     ?.balanceOf(ctx.account)
     .then((res: BigNumber) => {
