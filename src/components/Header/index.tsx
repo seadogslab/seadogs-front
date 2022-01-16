@@ -30,7 +30,7 @@ export default () => {
             // console.log('requestConnection');
             requestConnection();
           }}
-          disabled={!isWalletConnected && !ctx.isMetamaskConnected}
+          // disabled={!isWalletConnected && !ctx.isMetamaskConnected}
         />
       </div>
     </div>
