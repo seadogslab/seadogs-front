@@ -39,8 +39,11 @@ export const useWeb3Context = () => React.useContext(Web3Context);
 
 const Provider = ({ children }: { children: React.ReactNode }) => {
   // We load window only on client side
-  const { ethereum } = window ?? { ethereum: undefined };
-  const provider = new ethers.providers.Web3Provider(ethereum);
+  if (typeof window === "undefined") {
+    return <div />;
+  }
+  const { ethereum } = window;
+  const provider = ethereum && new ethers.providers.Web3Provider(ethereum);
 
   const [ethContext, setEthContext] = React.useState<Context>({
     ...values,
