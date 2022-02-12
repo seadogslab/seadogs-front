@@ -1,67 +1,68 @@
-import React from "react";
+import React, { useEffect } from "react";
 import type { NextPage } from "next";
+import Link from "next/link";
 import Image from "next/image";
-import styles from "../styles/utils.module.css";
+import styles from "../styles/home.module.css";
 import { useWeb3Context } from "../components/EthProvider";
+import Bg from "../public/bg-home.png";
+import Button from "../components/Button";
 
 const Home: NextPage = () => {
   const ctx = useWeb3Context();
-  console.log("xtx", ctx);
+  const [balance, setBalance] = React.useState<number | null>(null);
+  // console.log("xtx", ctx);
+
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  useEffect(async () => {
+    if (ctx.account && ctx.isWalletConnected) {
+      const balance = await ctx.contracts?.seadogs.balanceOf(ctx.account);
+      const convertedBalance = Number(balance);
+      setBalance(convertedBalance);
+    } else {
+      setBalance(null);
+    }
+  }, [ctx.account, ctx.isWalletConnected]);
+
   return (
     <div className={styles.container}>
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
+      <Link href="/quests">
+        <Button disabled={balance === null || balance === 0}>
+          Start Quest
+        </Button>
+      </Link>
 
-        <p className={styles.description}>
-          Get started by editing{" "}
-          <code className={styles.code}>pages/index.tsx</code>
+      {balance !== null && balance > 0 ? (
+        <p>You have {balance} Seadogs nft.</p>
+      ) : (
+        ctx.account && <p>You need to have at least one Seadogs nft!</p>
+      )}
+      {!ctx.account && (
+        <p style={{ textAlign: "center" }}>
+          Connect your wallet, and if you&lsquo;re eligible
+          <br />
+          you&lsquo;ll be able to start a quest!
         </p>
+      )}
 
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h2>Learn &rarr;</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className={styles.card}
-          >
-            <h2>Examples &rarr;</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h2>Deploy &rarr;</h2>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{" "}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer>
+      {/*<main>*/}
+      {/*  <p>Dark Waters! Dark Islands! Dark Souls!</p>*/}
+      {/*  <p>Enter the world of the Seadogs.</p>*/}
+      {/*  <p>Write the story. Join our collaborative NFT project.</p>*/}
+      {/*</main>*/}
+      {/*<div className={styles.bg}>*/}
+      {/*  <Image src={Bg} height={600} />*/}
+      {/*</div>*/}
+      {/*<div*/}
+      {/*  style={{*/}
+      {/*    backgroundImage: `url(/bg-home.png)`,*/}
+      {/*    width: "100%",*/}
+      {/*    height: 400,*/}
+      {/*    position: "absolute",*/}
+      {/*    top: 0,*/}
+      {/*    zIndex: -1,*/}
+      {/*  }}*/}
+      {/*/>*/}
     </div>
   );
 };

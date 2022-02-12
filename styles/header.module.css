@@ -1,21 +1,56 @@
 
 .container {
-  height: 10%;
-  background: rebeccapurple;
+  height: 8em;
+  /*background: rebeccapurple;*/
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 10px;
 }
 
 .wallet {
   display: flex;
-  flex-direction: column;
-  align-items: end;
-  justify-content: center;
+  flex: 1;
+  flex-direction: row;
+  align-items: center;
+  justify-content: end;
+  width: 100%;
 
+  padding-right: 4em;
 }
 
 .title {
+  /*position: absolute;*/
   display: flex;
-  flex-direction: column;
+  flex: 1;
+  /*flex-direction: column;*/
   align-items: center;
-  justify-content: center;
-  background: red;
+  justify-content: end;
+  /*background: green;*/
+  width: 100%;
+  padding-left: calc(17%);
+}
+.title:hover {
+  cursor: pointer;
+}
+
+.address {
+  font-size: 0.8em;
+  /*text-align: center;*/
+  /*font-weight: bold;*/
+  /*color: black;*/
+}
+
+.pp {
+  border-radius: 50px;
+  /*width: 100px;*/
+  /*height: 100px;*/
+}
+
+.ppEmpty {
+  color: black;
+  border-radius: 50px;
+  width: 100px;
+  height: 100px;
+  background: #f5f5f5;
 }

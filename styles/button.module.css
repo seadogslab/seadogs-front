@@ -1,0 +1,28 @@
+.button {
+    padding: calc(3%) calc(9%);
+    margin: 0 0.3em 0.3em 0;
+    background: black;
+    /*max-height: 100px;*/
+    /*max-width: 200px;*/
+    color: white;
+    font-size: 20px;
+    border: 1px solid white;
+}
+
+
+
+.button:hover {
+    cursor: pointer;
+    background: white;
+    color: black;
+}
+
+.button:disabled {
+    opacity: 0.3;
+    cursor: default;
+}
+
+.text {
+    font-size: 20px;
+    color: white;
+}

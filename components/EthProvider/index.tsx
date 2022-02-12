@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { ethers } from "ethers";
 
-// import Bids from "../artifacts/contracts/Bids.json";
+import SeadogsContract from "../../artifacts/contracts/Seadogs.json";
 
 declare global {
   interface Window {
@@ -19,10 +19,11 @@ interface Context {
   account?: string;
   chanId?: string;
   requestConnection: () => void;
+  requestDisconnect: () => void;
   isError: boolean;
   provider?: ethers.providers.Web3Provider;
   contracts?: {
-    bids: ethers.Contract;
+    seadogs: ethers.Contract;
   };
 }
 
@@ -30,7 +31,8 @@ const values: Context = {
   isWalletConnected: false,
   isMetamaskConnected: false,
   isError: false,
-  requestConnection: () => console.error("ERROR"),
+  requestConnection: () => console.error("Not implemented"),
+  requestDisconnect: () => console.error("Not implemented"),
 };
 
 const Web3Context = React.createContext(values);
@@ -50,7 +52,11 @@ const Provider = ({ children }: { children: React.ReactNode }) => {
     requestConnection: () => {
       ethereum.request({ method: "eth_requestAccounts" });
     },
+    requestDisconnect: () => {
+      // return provider.clearCachedProvider();
+    },
     provider,
+    isMetamaskConnected: !!ethereum,
   });
 
   const setValue = (keys: Partial<Context>) => {
@@ -62,15 +68,15 @@ const Provider = ({ children }: { children: React.ReactNode }) => {
 
   useEffect(() => {
     if (ethereum) {
-      // setValue({
-      //   contracts: {
-      //     bids: new ethers.Contract(
-      //       '0xBa8eA7597513D717263ed7542a8d374BBB5FEfc0',
-      //       Bids.abi,
-      //       ethContext.provider,
-      //     ),
-      //   },
-      // });
+      setValue({
+        contracts: {
+          seadogs: new ethers.Contract(
+            "0x229C7E191BBC0Ad611654BbeE5906814bCB00fEa",
+            SeadogsContract.abi,
+            ethContext.provider
+          ),
+        },
+      });
 
       ethereum.on("connect", (connectInfo: ConnectInfo) => {
         setValue({
